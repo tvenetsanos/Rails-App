@@ -16,8 +16,8 @@ import EditIcon from '@material-ui/icons/Edit';
 class MyReview extends Component {
   constructor(props) {
     super(props)
+    console.log("In my reviews")
     this.state = {
-        userDetailId: props.location.state.userDetailId,
         reviews: []
     }
   }
@@ -27,7 +27,7 @@ class MyReview extends Component {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }
-    fetch(`http://localhost:4000/reviews?userId=${this.state.userDetailId}`, requestOptions)
+    fetch(`/reviews`, requestOptions)
     .then((resp) => resp.json())
     .then((data) => {
       this.setState({
@@ -61,7 +61,7 @@ class MyReview extends Component {
         id: reviewId
       })
     }
-    fetch("http://localhost:4000/reviews", requestOptions)
+    fetch("/reviews", requestOptions)
     .then(() => {
       this.setState({
         reviews: this.state.reviews.filter((review) => {

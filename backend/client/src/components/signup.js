@@ -15,7 +15,6 @@ class SignUp extends Component {
             email: "",
             password: "",
             username: "",
-            userDetailId: 0,
             redirect: false
         }
     }
@@ -30,12 +29,10 @@ class SignUp extends Component {
               username: this.state.username
             })
           };
-          fetch("http://localhost:4000/signup", requestOptions)
+          fetch("/signup", requestOptions)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data) 
             this.setState({
-              userDetailId: data.id,
               redirect: true
             })
         })
@@ -98,7 +95,7 @@ class SignUp extends Component {
           />
         </DialogContent>
         <DialogActions>
-          <a href="/">Already have an account?</a>
+          <a href="/login">Already have an account?</a>
           <Button onClick={this.handleSignUp} color="primary">
                 Sign Up
           </Button>
@@ -109,7 +106,6 @@ class SignUp extends Component {
             to={{
             pathname: "/myreviews",
             state: {
-              userDetailId: this.state.userDetailId,
               userName: this.state.username
           }
           }}

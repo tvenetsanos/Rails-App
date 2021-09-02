@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  const logOut = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }
+    fetch("/logout", requestOptions)
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: "Red"}}>
@@ -34,8 +42,8 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Navigation
           </Typography>
-          <Link to={"/"}>
-            <Button color="inherit">Logout</Button>
+          <Link to={"/login"}>
+            <Button color="inherit" onClick={logOut}>Logout</Button>
           </Link>
         </Toolbar>
       </AppBar>

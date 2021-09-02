@@ -9,7 +9,6 @@ class WriteReview extends Component {
         console.log(props.location.state.reviewId)
         this.state = {
             open: false,
-            userDetailId: props.location.state.userDetailId,
             reviewId: props.location.state.reviewId ? props.location.state.reviewId : 0,
             rating: props.location.state.rating ? props.location.state.rating : 0,
             likes: props.location.state.likes ? props.location.state.likes : "",
@@ -53,14 +52,13 @@ class WriteReview extends Component {
               likes: this.state.likes,
               dislikes: this.state.dislikes,
               rating: this.state.rating,
-              user_id: this.state.userDetailId
             })
           };
           fetch("/reviews", requestOptions)
           .then(
-            //   this.setState({
-            //       redirect: true
-            //   })
+              this.setState({
+                  redirect: true
+              })
           )
     }
 

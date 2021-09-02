@@ -14,7 +14,6 @@ class SignIn extends Component {
         this.state = {
             email: "",
             password: "",
-            userDetailId: 0,
             redirect: false
         }
     }
@@ -28,12 +27,10 @@ class SignIn extends Component {
               password_digest: this.state.password
             })
           };
-          fetch("http://localhost:4000/login", requestOptions)
+          fetch("/login", requestOptions)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data) 
             this.setState({
-              userDetailId: data.id,
               redirect: true
             })
         })
@@ -90,10 +87,7 @@ class SignIn extends Component {
       {this.state.redirect && 
       <Redirect
             to={{
-            pathname: "/myreviews",
-            state: {
-              userDetailId: this.state.userDetailId
-          }
+            pathname: "/myreviews"
           }}
         />}
     </div>
